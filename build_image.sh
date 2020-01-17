@@ -249,7 +249,7 @@ function prepare_temp_directory {
 		LIFERAY_DOCKER_RELEASE_FILE_URL=http://${LIFERAY_DOCKER_RELEASE_FILE_URL}
 	fi
 
-	if [[ ${LIFERAY_DOCKER_RELEASE_FILE_URL} != http://mirrors.*.liferay.com* ]] && [[ ${LIFERAY_DOCKER_RELEASE_FILE_URL} != http://release-1* ]]
+	if [[ ${LIFERAY_DOCKER_RELEASE_FILE_URL} != http://mirrors.*.liferay.com* ]] && [[ ${LIFERAY_DOCKER_RELEASE_FILE_URL} != https://release* ]]
 	then
 		LIFERAY_DOCKER_RELEASE_FILE_URL=http://mirrors.lax.liferay.com/${LIFERAY_DOCKER_RELEASE_FILE_URL##*//}
 	fi
