@@ -7,7 +7,7 @@ ARG LABEL_VCS_URL
 ARG LABEL_VERSION
 
 RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11.0.5-r3 \
-	&& py2-pip busybox-extras jq mariadb-client libc6-compat \
+	py2-pip busybox-extras jq mariadb-client libc6-compat netcat-openbsd \
 	&& pip install s3cmd \
     && rm -fr /opt/liferay/data/document_library \
 	&& mkdir /docker-entrypoint-initlr.d \
