@@ -230,6 +230,8 @@ function main {
 
 	prepare_tomcat
 
+	clean_up_data_directory
+
 	download_trial_dxp_license
 
 	build_docker_image

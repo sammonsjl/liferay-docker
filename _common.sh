@@ -12,8 +12,18 @@ function check_utils {
 	done
 }
 
+function clean_up_data_directory {
+	rm -fr ${TEMP_DIR}/liferay/data/*
+}
+
 function clean_up_temp_directory {
 	rm -fr ${TEMP_DIR}
+}
+
+function configure_tomcat {
+	cp ${TEMP_DIR}/config/setenv.sh ${TEMP_DIR}/liferay/tomcat/bin
+	cp ${TEMP_DIR}/config/server.xml ${TEMP_DIR}/liferay/tomcat/conf
+	cp ${TEMP_DIR}/config/web.xml ${TEMP_DIR}/liferay/tomcat/conf/web.xml
 }
 
 function date {
@@ -95,7 +105,7 @@ function prepare_tomcat {
 
 	ln -s tomcat ${TEMP_DIR}/liferay/tomcat-${liferay_tomcat_version}
 
-	#configure_tomcat
+	configure_tomcat
 
 	warm_up_tomcat
 
