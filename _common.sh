@@ -12,10 +12,6 @@ function check_utils {
 	done
 }
 
-function clean_up_data_directory {
-	rm -fr /opt/liferay/data/*
-}
-
 function clean_up_temp_directory {
 	rm -fr ${TEMP_DIR}
 }
