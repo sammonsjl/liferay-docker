@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -o errexit
+
+main() {
+  . /etc/profile.d/build-metadata.sh
+  if [[ -d "/lcp-container" ]]; then
+    export ENTRYPOINT_DIR="/lcp-container"
+  else
+    export ENTRYPOINT_DIR="/docker-init.d"
+  fi
+
+  entrypoint-show-motd.sh "Liferay DXP"
+  entrypoint-process-config-directory.sh
+  entrypoint-process-deploy-directory.sh
+  entrypoint-process-license-directory.sh
+  entrypoint-process-hotfix-directory.sh
+  entrypoint-process-cluster.sh
+  entrypoint-process-monitor.sh
+  entrypoint-process-script-directory.sh
+  exec entrypoint-run-portal.sh
+}
+
+main "$@"

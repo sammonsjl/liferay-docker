@@ -6,7 +6,12 @@ ARG LABEL_VCS_REF
 ARG LABEL_VCS_URL
 ARG LABEL_VERSION
 
-RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11.0.5-r3
+RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11.0.5-r3 \
+	&& py2-pip busybox-extras jq mariadb-client libc6-compat \
+	&& pip install s3cmd \
+    && rm -fr /opt/liferay/data/document_library \
+	&& mkdir /docker-entrypoint-initlr.d \
+    && chown liferay:liferay /docker-entrypoint-initlr.d
 
 COPY scripts/* /usr/local/bin/
 
@@ -15,7 +20,7 @@ RUN adduser -D -h /home/liferay liferay && addgroup liferay liferay
 COPY --chown=liferay:liferay home/.bashrc /home/liferay/
 COPY --chown=liferay:liferay liferay /opt/liferay
 
-ENTRYPOINT /usr/local/bin/liferay_entrypoint.sh
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 
 ENV JAVA_VERSION=zulu8
 ENV JPDA_ADDRESS=8000

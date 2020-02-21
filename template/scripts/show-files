@@ -1,0 +1,6 @@
+#!/bin/bash
+
+shopt -s extglob
+
+cd "${1}"
+tree --noreport -I "$(ls -dm "!(common|${LCP_PROJECT_ENVIRONMENT})" 2>/dev/null | sed -e 's/, /|/g')" ${1}
