@@ -18,7 +18,8 @@ RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu \
 COPY scripts/* /usr/local/bin/
 
 COPY --chown=liferay:liferay home/.bashrc /home/liferay/
-COPY --chown=liferay:liferay properties/portal-bundle.properties /opt/liferay/
+COPY --chown=liferay:liferay config/portal-bundle.properties /opt/liferay/
+COPY --chown=liferay:liferay config/setenv.sh /opt/liferay/tomcat/bin
 COPY profile.d/build-metadata.sh /etc/profile.d
 COPY --chown=liferay:liferay liferay /opt/liferay
 
