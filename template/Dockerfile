@@ -11,7 +11,7 @@ RUN adduser -D -h /home/liferay liferay && addgroup liferay liferay
 RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu \
 	py2-pip busybox-extras jq mariadb-client libc6-compat netcat-openbsd \
 	&& pip install s3cmd \
-    && rm -fr /opt/liferay/data/document_library \
+    && rm -fr /opt/liferay/data/* \
 	&& mkdir /docker-entrypoint-initlr.d \
     && chown liferay:liferay /docker-entrypoint-initlr.d
 
