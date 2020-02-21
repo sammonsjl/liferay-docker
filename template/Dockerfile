@@ -20,6 +20,8 @@ COPY scripts/* /usr/local/bin/
 COPY --chown=liferay:liferay home/.bashrc /home/liferay/
 COPY --chown=liferay:liferay config/portal-bundle.properties /opt/liferay/
 COPY --chown=liferay:liferay config/setenv.sh /opt/liferay/tomcat/bin
+COPY --chown=liferay:liferay config/server.xml /opt/liferay/tomcat/conf
+COPY --chown=liferay:liferay config/web.xml /opt/liferay/tomcat/conf
 COPY profile.d/build-metadata.sh /etc/profile.d
 COPY --chown=liferay:liferay liferay /opt/liferay
 
