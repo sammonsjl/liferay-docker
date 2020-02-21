@@ -99,7 +99,7 @@ function prepare_tomcat {
 
 	ln -s tomcat ${TEMP_DIR}/liferay/tomcat-${liferay_tomcat_version}
 
-	configure_tomcat
+	#configure_tomcat
 
 	warm_up_tomcat
 
