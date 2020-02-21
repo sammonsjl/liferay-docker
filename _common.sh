@@ -16,10 +16,6 @@ function clean_up_temp_directory {
 	rm -fr ${TEMP_DIR}
 }
 
-function configure_tomcat {
-	printf "\nCATALINA_OPTS=\"\${CATALINA_OPTS} \${LIFERAY_JVM_OPTS}\"" >> ${TEMP_DIR}/liferay/tomcat/bin/setenv.sh
-}
-
 function date {
 	export LC_ALL=en_US.UTF-8
 
