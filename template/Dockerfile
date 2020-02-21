@@ -6,6 +6,8 @@ ARG LABEL_VCS_REF
 ARG LABEL_VCS_URL
 ARG LABEL_VERSION
 
+RUN adduser -D -h /home/liferay liferay && addgroup liferay liferay
+
 RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11.0.5-r3 \
 	py2-pip busybox-extras jq mariadb-client libc6-compat netcat-openbsd \
 	&& pip install s3cmd \
@@ -14,8 +16,6 @@ RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11
     && chown liferay:liferay /docker-entrypoint-initlr.d
 
 COPY scripts/* /usr/local/bin/
-
-RUN adduser -D -h /home/liferay liferay && addgroup liferay liferay
 
 COPY --chown=liferay:liferay home/.bashrc /home/liferay/
 COPY --chown=liferay:liferay liferay /opt/liferay
