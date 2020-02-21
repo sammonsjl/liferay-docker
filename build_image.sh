@@ -239,8 +239,6 @@ function main {
 	push_docker_images ${1}
 
 	clean_up_temp_directory
-
-	clean_up_data_directory
 }
 
 function prepare_temp_directory {
