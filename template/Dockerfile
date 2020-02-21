@@ -8,7 +8,7 @@ ARG LABEL_VERSION
 
 RUN adduser -D -h /home/liferay liferay && addgroup liferay liferay
 
-RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11.0.5-r3 \
+RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu \
 	py2-pip busybox-extras jq mariadb-client libc6-compat netcat-openbsd \
 	&& pip install s3cmd \
     && rm -fr /opt/liferay/data/document_library \
@@ -18,9 +18,10 @@ RUN apk --no-cache add bash curl nss tomcat-native tree ttf-dejavu zulu11-jdk=11
 COPY scripts/* /usr/local/bin/
 
 COPY --chown=liferay:liferay home/.bashrc /home/liferay/
+COPY profile.d/build-metadata.sh /etc/profile.d
 COPY --chown=liferay:liferay liferay /opt/liferay
 
-ENTRYPOINT /usr/local/bin/entrypoint.sh
+ENTRYPOINT /usr/local/bin/entrypoint
 
 ENV JAVA_VERSION=zulu8
 ENV JPDA_ADDRESS=8000
@@ -35,6 +36,9 @@ ENV LIFERAY_SETUP_PERIOD_WIZARD_PERIOD_ADD_PERIOD_SAMPLE_PERIOD_DATA=false
 ENV LIFERAY_SETUP_PERIOD_WIZARD_PERIOD_ENABLED=false
 ENV LIFERAY_TERMS_PERIOD_OF_PERIOD_USE_PERIOD_REQUIRED=false
 ENV LIFERAY_USERS_PERIOD_REMINDER_PERIOD_QUERIES_PERIOD_ENABLE=false
+
+ENV CATALINA_HOME=/opt/liferay/tomcat JRE_HOME=/usr/lib/jvm/zulu8 JAVA_HOME=/usr/lib/jvm/zulu8
+ENV PATH=/usr/lib/jvm/zulu8/bin:/opt/liferay/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 EXPOSE 8000 8009 8080 11311
 
