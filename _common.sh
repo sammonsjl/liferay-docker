@@ -57,7 +57,9 @@ function download {
 		return
 	fi
 
-	if [[ ${file_url} != http*://* ]]
+	if [[ ${file_url} != http://mirrors.*.liferay.com* ]] &&
+	   [[ ${file_url} != http://release-1* ]] &&
+	   [[ ${file_url} != https://releases.liferay.com* ]]
 	then
 		file_url=http://${file_url}
 	fi
